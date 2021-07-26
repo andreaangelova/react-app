@@ -3,6 +3,7 @@ import { TestFunction } from "./components/TestFunction";
 import TestClass from "./components/TestClass";
 import TestSnipperFunction from "./components/TestSnippetFunction";
 import TestSnipperClass from "./components/TestSnippetClass";
+import IlijaFunc from "./components/IlijaFunction";
 
 function App() {
   const isFunction = true;
@@ -13,6 +14,7 @@ function App() {
 
         <TestSnipperFunction />
         <TestSnipperClass />
+        <IlijaFunc></IlijaFunc>
       </header>
     </div>
   );
