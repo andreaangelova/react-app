@@ -14,6 +14,16 @@ export const TestFunction = () => {
   const getName = () => {
     return hasName ? <p>{name}</p> : "World";
   };
+
+  const buttonClicked = (action) => {
+    //alert("You clik");
+    console.log(action);
+  };
+
+  const preventTyping = (event) => {
+    console.log(event);
+    event.preventDefault();
+  };
   return (
     <div>
       <h1>Hello {getName()}</h1>
@@ -22,6 +32,14 @@ export const TestFunction = () => {
           <h1 key={index}>{name}</h1>
         ))}
       </div>
+      <button onClick={() => buttonClicked("submit")}>Submit</button>
+      <button onClick={() => buttonClicked("cancel")}>Cancel</button>
+      <input value={5} onChange={() => {}} onKeyDown={preventTyping}></input>
+      <input
+        value={5}
+        onChange={() => {}}
+        onKeyDown={(event) => preventTyping(event)}
+      ></input>
     </div>
   );
 };
