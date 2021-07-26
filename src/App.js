@@ -7,14 +7,17 @@ import IlijaFunc from "./components/IlijaFunction";
 
 function App() {
   const isFunction = true;
+
+  const name = "Ilija";
+  const surname = "Abrashev";
   return (
     <div className="App">
       <header className="App-header">
-        {isFunction ? <TestFunction /> : <TestClass />}
+        <IlijaFunc name={name + " " + surname} hasName />
+        {!isFunction ? <TestFunction /> : <TestClass text="This is a text" />}
 
-        <TestSnipperFunction />
+        <TestSnipperFunction name="leni" number="9" />
         <TestSnipperClass />
-        <IlijaFunc></IlijaFunc>
       </header>
     </div>
   );
