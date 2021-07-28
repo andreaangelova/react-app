@@ -1,13 +1,11 @@
 import "./App.css";
-import DescriptionClass from "./classExamples/DescriptionClass";
-import HomeClass from "./classExamples/HomeClass";
+import Books from "./classExamples/PropsState/Books";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <DescriptionClass description="This is from App.js" />
-        <HomeClass />
+        <Books />
       </header>
     </div>
   );
