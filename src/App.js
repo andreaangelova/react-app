@@ -1,11 +1,11 @@
 import "./App.css";
-import Books from "./classExamples/PropsState/Books";
+import Parent from "./classExamples/Lifecycle/Parent";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Books />
+        <Parent />
       </header>
     </div>
   );
