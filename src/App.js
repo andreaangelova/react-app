@@ -1,11 +1,12 @@
 import "./App.css";
-import Form from "./classExamples/Forms/Form";
+import "bootstrap/dist/css/bootstrap.min.css";
+import FormBootstrap from "./classExamples/Forms/FormBootstrap";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Form></Form>
+        <FormBootstrap />
       </header>
     </div>
   );
