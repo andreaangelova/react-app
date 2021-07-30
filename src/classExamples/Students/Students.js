@@ -1,5 +1,6 @@
 import { Component } from "react";
 import ListStudents from "./ListStudents";
+import { studentStyles } from "./StudentStyle";
 
 class Students extends Component {
   students = [
@@ -11,11 +12,12 @@ class Students extends Component {
   state = {
     showBest: false,
   };
+
   render() {
     return (
       <div>
-        <h1>This are the Students</h1>
-        <label>Show best</label>
+        <h1 style={studentStyles.studentH1}>This are the Students</h1>
+        <label style={studentStyles.studentLabel}>Show best</label>
         <input
           type="checkbox"
           onChange={() => this.setState({ showBest: !this.state.showBest })}
