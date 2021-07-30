@@ -1,11 +1,11 @@
 import "./App.css";
-import Parent from "./classExamples/Lifecycle/Parent";
+import Students from "./classExamples/Students/Students";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Parent />
+        <Students></Students>
       </header>
     </div>
   );
