@@ -1,12 +1,11 @@
 import "./App.css";
-import Students from "./classExamples/Students/Students";
+import Shop from "./classExamples/Shop/Shop";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>This is from App</h1>
-        <Students></Students>
+        <Shop></Shop>
       </header>
     </div>
   );
