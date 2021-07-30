@@ -1,11 +1,11 @@
 import "./App.css";
-import Shop from "./classExamples/Shop/Shop";
+import Form from "./classExamples/Forms/Form";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Shop></Shop>
+        <Form></Form>
       </header>
     </div>
   );
