@@ -1,19 +1,20 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Home from "./classExamples/Home/Home";
-import Description from "./classExamples/Home/Description";
+import FunctionCompnent from "./functionExamples/FunctionComponent";
+import ClassWrapp from "./functionExamples/ClassWrapp";
+import Text1 from "./functionExamples/Text1";
+import Text2 from "./functionExamples/Text2";
+import { useEffect, useState } from "react";
 
 function App() {
-  const descriptionInfo = {
-    title: "page name",
-    text: "this is the text from app",
-  };
-  const textArrey = ["List", " items", " from", " arrey"];
+  const [showFirst, setShowFirst] = useState(true);
+  useEffect(() => {
+    setTimeout(() => setShowFirst(false), 5000);
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
-        <Description descriptionInfo={descriptionInfo} textArrey={textArrey} />
-        <Home />
+        {showFirst ? <Text1 /> : <Text2 />}
       </header>
     </div>
   );
