@@ -36,7 +36,7 @@ function App() {
         <Switch>
           <Route strict path="/home" component={Home}></Route>
           <Route path="/book/" component={Book}></Route>
-          <Route exact path="/books">
+          <Route exact path={["/books", "/knigi"]}>
             {books ? (
               <Books />
             ) : redirectToWarnig ? (
