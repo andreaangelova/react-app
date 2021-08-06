@@ -1,20 +1,31 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import UseEffectClean from "./functionExamples/UseEffectClean";
-import { useEffect, useState } from "react";
-import ApiCall from "./functionExamples/ApiCall";
-import Text1 from "./functionExamples/Text1";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Nav from "./pages/Nav";
+import Book from "./pages/Book";
+import Books from "./pages/Books";
 
 function App() {
-  const [showComponent, setShowComponent] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setShowComponent(false);
-    }, 5000);
-  }, []);
   return (
     <div className="App">
-      <header className="App-header">{showComponent && <Text1 />}</header>
+      <Router>
+        <Nav />
+        <Route path="/home" component={Home}></Route>
+        <Route path="/loader" render={() => <h1>Loading...</h1>}></Route>
+        <Route exact path="/books">
+          <Books />
+        </Route>
+        <Route path="/book">
+          <Book />
+        </Route>
+        <Route path="/books/:id">
+          <Book />
+        </Route>
+        {/* <Route exact path="/">
+          <Home />
+        </Route> */}
+      </Router>
     </div>
   );
 }

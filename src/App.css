@@ -2,6 +2,23 @@
   text-align: center;
 }
 
+nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #282c34;
+  color: white;
+  align-items: center;
+  min-height: 70px;
+}
+.ulNav {
+  display: flex;
+}
+
+.ulNav li {
+  margin-right: 30px;
+  list-style: none;
+}
+
 .fontBig {
   font-size: xx-large;
 }
