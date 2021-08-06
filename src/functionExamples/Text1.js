@@ -1,15 +1,19 @@
 import { useEffect } from "react";
+import useScroll from "./useScroll";
+import useWindowSize from "./useWindowSize";
 
 const Text1 = () => {
-  useEffect(() => {
-    const height = window.innerHeight;
-    const width = window.innerWidth;
-    window.scrollTo(height, width);
-  });
+  useScroll();
+  const isSmall = useWindowSize();
+  // useEffect(() => {
+  //   const height = window.innerHeight;
+  //   const width = window.innerWidth;
+  //   window.scrollTo(0, 0);
+  // }, []);
   return (
     <div>
       <h1>Text 1</h1>
-      <p>
+      <p className={isSmall ? "fontBig" : ""}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
         auctor, nisi nec ullamcorper varius, nibh ante finibus lorem, in dictum
         metus urna nec libero. In gravida urna ut ante pulvinar, id accumsan
