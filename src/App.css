@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+.active {
+  color: red;
+}
 nav {
   display: flex;
   justify-content: space-around;
