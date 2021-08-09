@@ -4,6 +4,13 @@ class UserClass extends Component {
   state = {};
   componentDidUpdate = () => {
     console.log("change");
+    console.log(this.props);
+  };
+  shouldComponentUpdate = (newProps) => {
+    console.log(newProps);
+    console.log(this.props.name);
+    if (this.props.surname != newProps.surname) return true;
+    return false;
   };
   render() {
     return (

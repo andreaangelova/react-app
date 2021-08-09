@@ -44,7 +44,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <UserClass name={name} surname={surname} />
+        <UserClass name={name} />
         <Nav setIsLoggedIn={setIsLoggedIn} />
         <Counts></Counts>
         <Suspense fallback={<h1>Loading...</h1>}>
