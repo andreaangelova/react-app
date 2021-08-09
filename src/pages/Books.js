@@ -36,7 +36,7 @@ const Books = () => {
       <h1>This is Books page</h1>
       {getFilteredBooks().map((book) => (
         <p key={book.id}>
-          <Link to={`/book/${book.id}`}>{book.name}</Link>
+          <Link to={`/book/${book.name}`}>{book.name}</Link>
         </p>
       ))}
       <button onClick={() => history.go(1)}>Got forword</button>

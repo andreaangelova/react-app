@@ -34,8 +34,9 @@ function App() {
       <Router>
         <Nav />
         <Switch>
+          <Route exact path="/book/:id" component={Book}></Route>
           <Route strict path="/home" component={Home}></Route>
-          <Route path="/book/" component={Book}></Route>
+          <Route exact path="/book/" component={Book}></Route>
           <Route exact path={["/books", "/knigi"]}>
             {books ? (
               <Books />
