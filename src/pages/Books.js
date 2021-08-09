@@ -1,7 +1,8 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 const Books = () => {
   const { search } = useLocation();
+  const history = useHistory();
   console.log(search);
   const books = [
     {
@@ -38,6 +39,12 @@ const Books = () => {
           <Link to={`/book/${book.id}`}>{book.name}</Link>
         </p>
       ))}
+      <button onClick={() => history.go(1)}>Got forword</button>
+      <button onClick={() => history.goBack()}>Got back</button>
+      <button onClick={() => history.go(-2)}>Got 2 back</button>
+      <button onClick={() => history.push("/book")}>
+        Got to specific route
+      </button>
     </div>
   );
 };
