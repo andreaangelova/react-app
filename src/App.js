@@ -13,6 +13,7 @@ import { Suspense } from "react";
 import Counts from "./pages/Count";
 import User from "./pages/User";
 import UserClass from "./pages/UserClass";
+import ArrayItems from "./pages/ArrayItems";
 //import Home from "./pages/Home";
 const Home = React.lazy(() => import("./pages/Home"));
 //import Book from "./pages/Book";
@@ -22,9 +23,19 @@ const Books = React.lazy(() => import("./pages/Books"));
 //import Lifecycle from "./classExamples/Lifecycle/Lifecycle";
 
 function App() {
+  const user1 = { name: "John", surname: "Doe" };
+  const user2 = { name: "John", surname: "Doe" };
+  console.log("compare objects");
+  console.log(user1 == user2);
+  let user3 = user1;
+  user3.name = "John Updated";
+  console.log("compare objects references");
+  console.log(user1 == user3);
   const [books, setBooks] = useState();
+  const [array, setArray] = useState([1, 2, 3, 4, 5]);
   const [name, setName] = useState("test");
   const [surname, setSurname] = useState("test");
+  const [user, setUser] = useState({ name: "John", surname: "Doe" });
   const [loggedIn, setIsLoggedIn] = useState(false);
   const [redirectToWarnig, setRedirectToWarnig] = useState();
   const getDataFormApi = async () => {
@@ -34,6 +45,16 @@ function App() {
       setBooks(body.results);
       setName("John");
       setSurname("Doe");
+      setUser({ name: "John", surname: "Doe" });
+
+      let arrayItems = [...array, 6];
+      setArray(arrayItems);
+
+      setTimeout(() => {
+        setName("John");
+        setSurname("Doe");
+        setUser({ name: "John", surname: "Doe" });
+      }, [1000]);
     } else {
       setRedirectToWarnig(true);
     }
@@ -44,7 +65,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <UserClass name={name} />
+        <UserClass user={user} />
+        <ArrayItems array={array} />
         <Nav setIsLoggedIn={setIsLoggedIn} />
         <Counts></Counts>
         <Suspense fallback={<h1>Loading...</h1>}>
