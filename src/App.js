@@ -16,6 +16,7 @@ import Warning from "./pages/Warning";
 
 function App() {
   const [books, setBooks] = useState();
+  const [loggedIn, setIsLoggedIn] = useState(false);
   const [redirectToWarnig, setRedirectToWarnig] = useState();
   const getDataFormApi = async () => {
     const response = await fetch("https://swapi.dev/api/people");
@@ -32,10 +33,12 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Nav />
+        <Nav setIsLoggedIn={setIsLoggedIn} />
         <Switch>
-          <Route exact path="/book/:id" component={Book}></Route>
-          <Route strict path="/home" component={Home}></Route>
+          <Route exact strict path="/home" component={Home}></Route>
+          <Route exact path="/book/:id">
+            {loggedIn ? <Book /> : <h1>You need to login for this function</h1>}
+          </Route>
           <Route exact path="/book/" component={Book}></Route>
           <Route exact path={["/books", "/knigi"]}>
             {books ? (

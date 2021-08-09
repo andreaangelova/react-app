@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 
-const Nav = () => {
+const Nav = (props) => {
   return (
     <nav>
       <h2>logo</h2>
@@ -22,6 +22,7 @@ const Nav = () => {
           </NavLink>
         </li>
       </ul>
+      <button onClick={props.setIsLoggedIn}>Log in</button>
     </nav>
   );
 };
