@@ -1,7 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 
 const Nav = (props) => {
-  console.log("render");
   return (
     <nav>
       <h2>logo</h2>

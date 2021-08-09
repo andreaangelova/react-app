@@ -11,6 +11,8 @@ import Nav from "./pages/Nav";
 import Warning from "./pages/Warning";
 import { Suspense } from "react";
 import Counts from "./pages/Count";
+import User from "./pages/User";
+import UserClass from "./pages/UserClass";
 //import Home from "./pages/Home";
 const Home = React.lazy(() => import("./pages/Home"));
 //import Book from "./pages/Book";
@@ -21,6 +23,8 @@ const Books = React.lazy(() => import("./pages/Books"));
 
 function App() {
   const [books, setBooks] = useState();
+  const [name, setName] = useState("test");
+  const [surname, setSurname] = useState("test");
   const [loggedIn, setIsLoggedIn] = useState(false);
   const [redirectToWarnig, setRedirectToWarnig] = useState();
   const getDataFormApi = async () => {
@@ -28,6 +32,8 @@ function App() {
     if (response.status === 200) {
       const body = await response.json();
       setBooks(body.results);
+      setName("John");
+      setSurname("Doe");
     } else {
       setRedirectToWarnig(true);
     }
@@ -38,6 +44,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <UserClass name={name} surname={surname} />
         <Nav setIsLoggedIn={setIsLoggedIn} />
         <Counts></Counts>
         <Suspense fallback={<h1>Loading...</h1>}>
