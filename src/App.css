@@ -6,6 +6,7 @@
 }
 .error {
   border-color: red;
+  outline: none;
 }
 nav {
   display: flex;

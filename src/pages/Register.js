@@ -1,49 +1,85 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const Rgister = () => {
   const inputs = [
-    { id: "name", label: "Name", type: "text", requierd: true },
+    {
+      id: "name",
+      label: "Name",
+      type: "text",
+      requierd: true,
+      validationText: "please enter name",
+    },
     { id: "middlename", label: "Middle Name", type: "text", requierd: false },
-    { id: "surname", label: "SurName", type: "text", requierd: true },
-    { id: "age", label: "Age", type: "number", requierd: true },
+    {
+      id: "surname",
+      label: "SurName",
+      type: "text",
+      requierd: true,
+      validationText: "please enter surname",
+    },
+    {
+      id: "email",
+      label: "Email",
+      type: "email",
+      requierd: true,
+      pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+      validationText: "please enter valid email",
+    },
+    {
+      id: "age",
+      label: "Age",
+      type: "number",
+      requierd: true,
+      max: 100,
+      validationText: "please enter valid age",
+    },
   ];
-  const [formData, setFormData] = useState({
-    name: "test",
-    surname: "",
-    middlename: "",
-    age: 0,
+  const submit = (values) => {
+    console.log("submitted");
+    console.log(values);
+  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    clearErrors,
+  } = useForm({
+    defaultValues: { name: "John" },
   });
-  const [submitted, setSubmitted] = useState(false);
-  const submit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    console.log(formData);
+  const restForm = () => {
+    reset();
+    setTimeout(() => {
+      clearErrors();
+    }, 10);
   };
   return (
     <div>
       <h1>Welcome, Please register</h1>
-      <form>
+      <form onSubmit={handleSubmit(submit)}>
         {inputs.map((input) => {
           return (
             <div key={input.id}>
               <p>{input.label}</p>
               <input
-                className={
-                  !formData[input.id] && input.requierd && submitted
-                    ? "error"
-                    : ""
-                }
+                className={errors[input.id] ? "error" : ""}
                 type={input.type}
-                value={formData[input.id]}
-                onChange={(e) =>
-                  setFormData({ ...formData, [input.id]: e.target.value })
-                }
+                {...register(input.id, {
+                  required: input.requierd,
+                  pattern: input.pattern,
+                  max: input.max,
+                })}
               ></input>
+              {errors[input.id] && input.validationText && (
+                <p>{input.validationText}</p>
+              )}
             </div>
           );
         })}
         <br></br>
-        <input type="submit" onClick={submit}></input>
+        <input type="submit"></input>
+        <br></br>
+        <button onClick={restForm}>Reset Form</button>
       </form>
     </div>
   );
