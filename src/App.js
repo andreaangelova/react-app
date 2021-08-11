@@ -17,6 +17,7 @@ import ArrayItems from "./pages/ArrayItems";
 import CarFunction from "./pages/CarFunction";
 import StarWars from "./pages/StarWars";
 import Rgister from "./pages/Register";
+import UserContext from "./context/UserContext";
 //import Car from "./pages/Car";
 //import Home from "./pages/Home";
 const Home = React.lazy(() => import("./pages/Home"));
@@ -89,37 +90,39 @@ function App() {
         </Suspense>
         <Counts></Counts> */}
         <Suspense fallback={<h1>Loading...</h1>}>
-          <Switch>
-            <Route exact strict path="/register" component={Rgister}></Route>
-            <Route exact strict path="/star" component={StarWars}></Route>
-            <Route exact strict path="/home" component={Home}></Route>
-            <Route exact path="/book/:id">
-              {loggedIn ? (
-                <Book />
-              ) : (
-                <h1>You need to login for this function</h1>
+          <UserContext.Provider value="John Doe">
+            <Switch>
+              <Route exact strict path="/register" component={Rgister}></Route>
+              <Route exact strict path="/star" component={StarWars}></Route>
+              <Route exact strict path="/home" component={Home}></Route>
+              <Route exact path="/book/:id">
+                {loggedIn ? (
+                  <Book />
+                ) : (
+                  <h1>You need to login for this function</h1>
+                )}
+              </Route>
+              <Route exact path="/book/" component={Book}></Route>
+              <Route exact path={["/books", "/knigi"]}>
+                {books ? (
+                  <Books />
+                ) : redirectToWarnig ? (
+                  <Redirect to="/warning" />
+                ) : (
+                  <h1>Loading...</h1>
+                )}
+              </Route>
+              <Route
+                path="/books/:id/:id"
+                render={() => <h1>You are reading page:</h1>}
+              ></Route>
+              <Route exact path="/books/:id" component={Book}></Route>
+              {redirectToWarnig && (
+                <Route path="/warning" component={Warning}></Route>
               )}
-            </Route>
-            <Route exact path="/book/" component={Book}></Route>
-            <Route exact path={["/books", "/knigi"]}>
-              {books ? (
-                <Books />
-              ) : redirectToWarnig ? (
-                <Redirect to="/warning" />
-              ) : (
-                <h1>Loading...</h1>
-              )}
-            </Route>
-            <Route
-              path="/books/:id/:id"
-              render={() => <h1>You are reading page:</h1>}
-            ></Route>
-            <Route exact path="/books/:id" component={Book}></Route>
-            {redirectToWarnig && (
-              <Route path="/warning" component={Warning}></Route>
-            )}
-            <Route path="/" component={Home}></Route>
-          </Switch>
+              <Route path="/" component={Home}></Route>
+            </Switch>
+          </UserContext.Provider>
         </Suspense>
       </Router>
     </div>

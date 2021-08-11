@@ -2,6 +2,7 @@ import React from "react";
 import { Suspense } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../context/UserContext";
 const Description = React.lazy(() => import("./Description"));
 
 const Home = () => {
@@ -19,7 +20,9 @@ const Home = () => {
         <Link to="/books">All Books</Link>
         <br />
         <button onClick={() => setDescription(true)}>Show more text</button>
-        {showDescription && <Description />}
+        <UserContext.Provider value="John Updated">
+          {showDescription && <Description />}
+        </UserContext.Provider>
       </div>
     </Suspense>
   );

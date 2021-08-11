@@ -1,4 +1,9 @@
+import { useContext } from "react";
+import UserContext from "../context/UserContext";
+
 const Description = () => {
+  const user = useContext(UserContext);
+  console.log(user);
   return (
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent auctor,
