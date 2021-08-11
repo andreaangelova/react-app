@@ -4,6 +4,9 @@
 .active {
   color: red;
 }
+.error {
+  border-color: red;
+}
 nav {
   display: flex;
   justify-content: space-around;

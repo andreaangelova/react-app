@@ -16,6 +16,7 @@ import UserClass from "./pages/UserClass";
 import ArrayItems from "./pages/ArrayItems";
 import CarFunction from "./pages/CarFunction";
 import StarWars from "./pages/StarWars";
+import Rgister from "./pages/Register";
 //import Car from "./pages/Car";
 //import Home from "./pages/Home";
 const Home = React.lazy(() => import("./pages/Home"));
@@ -89,6 +90,7 @@ function App() {
         <Counts></Counts> */}
         <Suspense fallback={<h1>Loading...</h1>}>
           <Switch>
+            <Route exact strict path="/register" component={Rgister}></Route>
             <Route exact strict path="/star" component={StarWars}></Route>
             <Route exact strict path="/home" component={Home}></Route>
             <Route exact path="/book/:id">
