@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -41,6 +41,12 @@ function App() {
   const [array, setArray] = useState([1, 2, 3, 4, 5]);
   const [name, setName] = useState("test");
   const [surname, setSurname] = useState("test");
+  const reducer = (state, action) => {
+    if (action.type === "increment") return state + action.payload;
+    if (action.type === "decrement") return state - action.payload;
+    return state;
+  };
+  const [age, setAge] = useReducer(reducer, 0);
   const [user, setUser] = useState({ name: "John", surname: "Doe" });
   const [loggedIn, setIsLoggedIn] = useState(false);
   const [redirectToWarnig, setRedirectToWarnig] = useState();
@@ -89,6 +95,13 @@ function App() {
           <CarFunction car={car} />
         </Suspense>
         <Counts></Counts> */}
+        <h1>This is your age: {age}</h1>
+        <button onClick={() => setAge({ type: "increment", payload: 2 })}>
+          Add year
+        </button>
+        <button onClick={() => setAge({ type: "decrement", payload: 3 })}>
+          Remove year
+        </button>
         <Suspense fallback={<h1>Loading...</h1>}>
           <UserContext.Provider value="John Doe">
             <Switch>
