@@ -14,6 +14,7 @@ import Counts from "./pages/Count";
 import User from "./pages/User";
 import UserClass from "./pages/UserClass";
 import ArrayItems from "./pages/ArrayItems";
+//import Car from "./pages/Car";
 //import Home from "./pages/Home";
 const Home = React.lazy(() => import("./pages/Home"));
 //import Book from "./pages/Book";
@@ -21,16 +22,17 @@ const Book = React.lazy(() => import("./pages/Book"));
 //import Books from "./pages/Books";
 const Books = React.lazy(() => import("./pages/Books"));
 //import Lifecycle from "./classExamples/Lifecycle/Lifecycle";
+const Car = React.lazy(() => import("./pages/Car"));
 
 function App() {
-  const user1 = { name: "John", surname: "Doe" };
-  const user2 = { name: "John", surname: "Doe" };
-  console.log("compare objects");
-  console.log(user1 == user2);
-  let user3 = user1;
-  user3.name = "John Updated";
-  console.log("compare objects references");
-  console.log(user1 == user3);
+  // const user1 = { name: "John", surname: "Doe" };
+  // const user2 = { name: "John", surname: "Doe" };
+  // console.log("compare objects");
+  // console.log(user1 == user2);
+  // let user3 = user1;
+  // user3.name = "John Updated";
+  // console.log("compare objects references");
+  // console.log(user1 == user3);
   const [books, setBooks] = useState();
   const [array, setArray] = useState([1, 2, 3, 4, 5]);
   const [name, setName] = useState("test");
@@ -65,9 +67,12 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <UserClass user={user} />
-        <ArrayItems array={array} />
-        <Nav setIsLoggedIn={setIsLoggedIn} />
+        {/* <UserClass user={user} />
+        <ArrayItems array={array} /> 
+        <Nav setIsLoggedIn={setIsLoggedIn} />*/}
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <Car />
+        </Suspense>
         <Counts></Counts>
         <Suspense fallback={<h1>Loading...</h1>}>
           <Switch>
