@@ -14,6 +14,7 @@ import Counts from "./pages/Count";
 import User from "./pages/User";
 import UserClass from "./pages/UserClass";
 import ArrayItems from "./pages/ArrayItems";
+import CarFunction from "./pages/CarFunction";
 //import Car from "./pages/Car";
 //import Home from "./pages/Home";
 const Home = React.lazy(() => import("./pages/Home"));
@@ -63,7 +64,18 @@ function App() {
   };
   useEffect(() => {
     getDataFormApi();
+    setTimeout(() => {
+      let newCar = car;
+      newCar.model = "Yaris";
+      setCar(newCar);
+    }, [100]);
   }, []);
+  const [car, setCar] = useState({
+    model: "Corola",
+    color: "blue",
+    maker: "Toyota",
+    array: [],
+  });
   return (
     <div className="App">
       <Router>
@@ -71,7 +83,7 @@ function App() {
         <ArrayItems array={array} /> 
         <Nav setIsLoggedIn={setIsLoggedIn} />*/}
         <Suspense fallback={<h1>Loading...</h1>}>
-          <Car />
+          <CarFunction car={car} />
         </Suspense>
         <Counts></Counts>
         <Suspense fallback={<h1>Loading...</h1>}>

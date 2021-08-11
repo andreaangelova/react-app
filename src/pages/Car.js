@@ -2,7 +2,7 @@ import { PureComponent } from "react";
 import { Component } from "react";
 
 class Car extends PureComponent {
-  state = { model: "Corola", color: "blue", maker: "Toyota" };
+  state = { model: "Corola", color: "blue", maker: "Toyota", array: [] };
   componentDidUpdate = () => {
     console.log("change in car");
     console.log(this.state);
@@ -17,6 +17,13 @@ class Car extends PureComponent {
     // let stateObj = this.state;
     // stateObj.model = "Yaris";
     // this.setState(stateObj);
+    let newArr = [...this.state.array];
+    this.setState({
+      model: "Corola",
+      color: "blue",
+      maker: "Toyota",
+      array: newArr,
+    });
   };
   render() {
     return (
