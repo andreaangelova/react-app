@@ -47,7 +47,15 @@ function App() {
     return state;
   };
   const [age, setAge] = useReducer(reducer, 0);
-  const [user, setUser] = useState({ name: "John", surname: "Doe" });
+  const reducer2 = (state, action) => {
+    // { name: "John", surname: "Doe" }
+    // {name: "Andrea"}
+    return { ...state, ...action };
+  };
+  const [user, setUser] = useReducer(reducer2, {
+    name: "Marija",
+    surname: "Milevska",
+  });
   const [loggedIn, setIsLoggedIn] = useState(false);
   const [redirectToWarnig, setRedirectToWarnig] = useState();
   const getDataFormApi = async () => {
@@ -57,7 +65,7 @@ function App() {
       setBooks(body.results);
       setName("John");
       setSurname("Doe");
-      setUser({ name: "John", surname: "Doe" });
+      //setUser({ name: "John", surname: "Doe" });
 
       let arrayItems = [...array, 6];
       setArray(arrayItems);
@@ -65,7 +73,7 @@ function App() {
       setTimeout(() => {
         setName("John");
         setSurname("Doe");
-        setUser({ name: "John", surname: "Doe" });
+        //setUser({ name: "John", surname: "Doe" });
       }, [1000]);
     } else {
       setRedirectToWarnig(true);
@@ -103,7 +111,10 @@ function App() {
           Remove year
         </button>
         <Suspense fallback={<h1>Loading...</h1>}>
-          <UserContext.Provider value="John Doe">
+          <UserContext.Provider value={{ user, setUser }}>
+            <h1>
+              This is from APP {user.name} {user.surname}
+            </h1>
             <Switch>
               <Route exact strict path="/register" component={Rgister}></Route>
               <Route exact strict path="/star" component={StarWars}></Route>

@@ -1,6 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
+import UserContext from "../context/UserContext";
 
 const StarWars = () => {
+  const { user, setUser } = useContext(UserContext);
   const [people, setPeople] = useState([]);
   const [ships, setShips] = useState([]);
   const [gender, setGender] = useState("");
@@ -30,7 +32,16 @@ const StarWars = () => {
   }, [mglt, ships]);
   return (
     <div>
-      <h1>Welcome to Star Wars</h1>
+      <h1>
+        Welcome to Star Wars {user.name} {user.surname}
+      </h1>
+      <button
+        onClick={() => {
+          setUser({ surname: "Andrea" });
+        }}
+      >
+        Change name
+      </button>
       <h2>These are the people</h2>
       <h3>Filter by gender</h3>
       <button onClick={() => setGender("male")}>Male</button>

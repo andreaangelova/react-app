@@ -20,9 +20,7 @@ const Home = () => {
         <Link to="/books">All Books</Link>
         <br />
         <button onClick={() => setDescription(true)}>Show more text</button>
-        <UserContext.Provider value="John Updated">
-          {showDescription && <Description />}
-        </UserContext.Provider>
+        {showDescription && <Description />}
       </div>
     </Suspense>
   );
